@@ -232,7 +232,9 @@ http://10.0.2.2:8000/api
 * Struktur API dibuat sederhana agar mudah dikembangkan
 * Bisa dikembangkan ke fitur:
 
-  * komentar
-  * follow user
-  * notifikasi
+  * Register (Wajib)
+  * Baca (Wajib)
+  * Simpan (Sangat disarankan)
+  * Suka
+  * Komentar
 
