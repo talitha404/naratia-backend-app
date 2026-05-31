@@ -1,66 +1,238 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📚 Naratia Backend API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Backend API untuk aplikasi **Naratia**, sebuah platform berbasis mobile yang memungkinkan pengguna untuk membuat, membaca, dan mengelola cerita.
 
-## About Laravel
+Backend ini dibangun menggunakan **Laravel** dan berfungsi sebagai penyedia data (API) untuk aplikasi frontend (Flutter).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Fitur Utama yang dikembangkan
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* 🔐 Autentikasi (Register & Login)
+* 👤 Manajemen Profil Pengguna
+* ✍️ CRUD Cerita (Create, Read, Update, Delete)
+* ❤️ Interaksi (Like / Bookmark – opsional)
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠️ Teknologi yang Digunakan
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+* **Laravel** (PHP Framework)
+* **MySQL** (Database)
+* **Laravel Sanctum / JWT** (Authentication)
+* **Postman** (API Testing)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 📂 Struktur Project (Simplified)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```
+app
+├── Http
+│   ├── Controllers
+│   │   ├── Api
+│   │   │   ├── AuthController.php
+│   │   │   └── UserController.php
+│   │   ├── BookmarkController.php
+│   │   ├── CommentController.php
+│   │   ├── ContentController.php
+│   │   ├── Controller.php
+│   │   ├── FollowController.php
+│   │   ├── LikeController.php
+│   │   └── StoryController.php
+├── Models
+│   ├── Bookmark.php
+│   ├── Comment.php
+│   ├── Content.php
+│   ├── Follow.php
+│   ├── Like.php
+│   ├── Story.php
+│   └── User.php
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+routes
+├── api.php
+├── channels.php
+├── console.php
+└── web.php
 
-## Contributing
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+# ✅ Alur Lengkap Setup Backend Naratia (via XAMPP)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🧩 1. Siapkan XAMPP
 
-## Security Vulnerabilities
+* Nyalakan:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+  * ✅ Apache
+  * ✅ MySQL
 
-## License
+* Buka:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+  ```
+  http://localhost/phpmyadmin
+  ```
+
+---
+
+## 🗄️ 2. Buat Database Kosong
+
+Di phpMyAdmin:
+
+* Klik **New**
+* Nama database:
+
+  ```
+  naratia-backend-app
+  ```
+* Klik **Create**
+
+❗ Jangan buat tabel manual — Laravel yang akan isi
+
+---
+
+## 📥 3. Clone Repository
+
+```bash
+git clone https://github.com/talitha404/naratia-backend-app.git
+cd naratia-backend-app
+```
+
+---
+
+## 📦 4. Install Dependency
+
+```bash
+composer install
+```
+
+---
+
+## ⚙️ 5. Setup Environment (INI PENTING ⚠️)
+
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+---
+
+## 🛠️ 6. Konfigurasi Database
+
+Buka `.env`, ubah:
+
+```env
+DB_DATABASE=naratia-backend-app
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+(XAMPP default biasanya kosong passwordnya)
+
+---
+
+## 🧱 7. Migrasi Database
+
+```bash
+php artisan migrate
+```
+
+Kalau error / mau reset:
+
+```bash
+php artisan migrate:fresh
+```
+
+✔️ Setelah ini tabel otomatis keisi
+
+---
+
+## 🚀 8. Jalankan Server
+
+```bash
+php artisan serve
+```
+
+Akan muncul:
+
+```
+http://127.0.0.1:8000
+```
+
+---
+
+## 🧪 9. Testing di Postman (AMBIL TOKEN)
+
+Langkah:
+
+### 1. Register
+
+```
+POST /api/register
+```
+
+### 2. Login
+
+```
+POST /api/login
+```
+
+📌 Response akan ada:
+
+```
+token
+```
+
+---
+
+## 🔐 10. Gunakan Token
+
+Di request lain:
+
+```
+Authorization: Bearer TOKEN_KAMU
+```
+
+---
+
+## 📱 11. Integrasi ke Flutter
+
+Di Flutter:
+
+* Base URL:
+
+```
+http://10.0.2.2:8000/api
+```
+
+(karena emulator Android)
+
+---
+
+# 🧠 Ringkasan Versi Cepat
+
+✔️ Versi final (lebih aman):
+
+1. XAMPP ON
+2. Buat DB
+3. Clone repo
+4. Composer install
+5. Setup .env + key
+6. Config DB
+7. Migrate
+8. Serve
+9. Postman (ambil token)
+10. Flutter
+
+## 📌 Catatan Pengembangan
+
+* Backend ini dirancang untuk dihubungkan dengan aplikasi **Flutter**
+* Struktur API dibuat sederhana agar mudah dikembangkan
+* Bisa dikembangkan ke fitur:
+
+  * komentar
+  * follow user
+  * notifikasi
+
