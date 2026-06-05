@@ -21,8 +21,8 @@ class StoryController extends Controller
 
         $story = Story::create([
             'title' => $request->title,
-            'description' => $request->description,
-            'genre_id' => $request->genre_id,
+            'description' => $request->description ?? null,
+            'genre_id' => $request->genre_id ?? null,
             'user_id' => Auth::id(),
             'status' => 'draft',
         ]);
@@ -127,4 +127,5 @@ class StoryController extends Controller
 
         return response()->json($story);
     }
+    
 }
