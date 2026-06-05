@@ -10,6 +10,7 @@ use App\Http\Controllers\ContentController;
 use App\Http\Controllers\CommentController; // 👈 Sudah diimport
 use App\Http\Controllers\LikeController;    // 👈 Sudah diimport
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 // test endpoint
 Route::get('/test', function () {
@@ -42,6 +43,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/stories/{id}/publish', [StoryController::class, 'publish']);       // Mengubah status draft jadi published (Penulis)
     Route::get('/my-stories', [StoryController::class, 'myStories']);             // Ambil semua cerita milik user login (Penulis)
     Route::get('/my-drafts', [StoryController::class, 'drafts']);                 // Ambil khusus draft milik user login (Penulis)
+    Route::get('/genres', function () {return DB::table('genres')->get();});
 
     // 📝 FITUR ISI BAB / KONTEN NOVEL
     Route::post('/chapters', [ContentController::class, 'store']);                      // Tambah / Update Bab baru (Penulis)
