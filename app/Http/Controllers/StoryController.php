@@ -109,13 +109,12 @@ class StoryController extends Controller
      * 📌 Ambil published saja
      */
     public function published()
-    {
-        $stories = Story::where('status', 'published')
-                        ->latest()
-                        ->get();
+{
+    // Ini akan mengambil SEMUA data, tidak peduli statusnya apa
+    $stories = Story::latest()->get(); 
 
-        return response()->json($stories);
-    }
+    return response()->json($stories);
+}
 
     /**
      * 📌 Detail Story
