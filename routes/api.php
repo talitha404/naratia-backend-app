@@ -54,18 +54,21 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/profile', [ProfileController::class, 'update']);
     Route::post('/feedback', [FeedbackController::class, 'store']);
 
-    // 🔐 FITUR CERITA / NOVEL NARATIA (Bisa Baca & Bisa Tulis)
-    Route::get('/stories', [StoryController::class, 'published']);               // Ambil semua cerita untuk Beranda (Pembaca)
-    Route::get('/stories/{id}', [StoryController::class, 'show']);                 // Ambil detail cerita & sinopsis (Pembaca)
-    Route::post('/stories', [StoryController::class, 'store']);                   // Bikin draft cerita baru (Penulis)
-    Route::post('/stories/{id}/cover', [StoryController::class, 'uploadCover']);     // Upload cover buku cerita (Penulis)
-    Route::post('/stories/{id}/publish', [StoryController::class, 'publish']);       // Mengubah status draft jadi published (Penulis)
-    Route::get('/my-stories', [StoryController::class, 'myStories']);             // Ambil semua cerita milik user login (Penulis)
-    Route::get('/my-drafts', [StoryController::class, 'drafts']);                 // Ambil khusus draft milik user login (Penulis)
+    // --- 📖 FITUR CERITA / NOVEL NARATIA (Pembaca & Penulis)
+    Route::get('/stories', [StoryController::class, 'published']);    // Ambil semua cerita untuk Beranda (Pembaca)
+    Route::get('/stories/{id}', [StoryController::class, 'show']);    // Ambil detail cerita & sinopsis (Pembaca)
     Route::get('/genres', function () {return DB::table('genres')->get();});
     Route::patch('/stories/{id}/status', [StoryController::class, 'updateStatus']);
+
+    // --- 📝 FITUR TULIS CERITA (Khusus Penulis yang Login)
+    Route::post('/stories', [StoryController::class, 'store']);                  // Bikin draft cerita baru
+    Route::post('/stories/{id}/cover', [StoryController::class, 'uploadCover']); // Upload cover buku
+    Route::post('/stories/{id}/publish', [StoryController::class, 'publish']);   // Publish cerita
+    Route::get('/my-stories', [StoryController::class, 'myStories']);            // Ambil cerita milik user
+    Route::get('/my-drafts', [StoryController::class, 'drafts']);
+    Route::get('/my-published', [StoryController::class, 'published']);
     
-    //📝 FITUR TULIS CERITA (Khusus Penulis yang Login) PUNYA NISA
+    //📝 FITUR TULIS CERITA (Khusus Penulis yang Login) PUNYA SIAPA INI? KURAPIKAN DI ATASNYA YA
     // Route::post('/stories', [StoryController::class, 'store']);                  // Bikin draft cerita baru
     // Route::post('/stories/{id}/cover', [StoryController::class, 'uploadCover']); // Upload cover buku
     // Route::post('/stories/{id}/publish', [StoryController::class, 'publish']);   // Publish cerita
