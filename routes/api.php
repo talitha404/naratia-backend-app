@@ -44,6 +44,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/my-stories', [StoryController::class, 'myStories']);             // Ambil semua cerita milik user login (Penulis)
     Route::get('/my-drafts', [StoryController::class, 'drafts']);                 // Ambil khusus draft milik user login (Penulis)
     Route::get('/genres', function () {return DB::table('genres')->get();});
+    Route::patch('/stories/{id}/status', [StoryController::class, 'updateStatus']);
 
     // 📝 FITUR ISI BAB / KONTEN NOVEL
     Route::post('/chapters', [ContentController::class, 'store']);                      // Tambah / Update Bab baru (Penulis)
