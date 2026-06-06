@@ -9,17 +9,16 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('story_contents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('story_id')->constrained()->cascadeOnDelete();
+            // Sambungkan ke tabel stories
+            $table->foreignId('story_id')->constrained('stories')->onDelete('cascade');
             $table->integer('chapter_number');
-            $table->string('title', 255)->nullable();
-            $table->longText('content')->nullable();
+            $table->string('title');
+            $table->longText('content'); // longText supaya muat cerita panjang
             $table->timestamps();
-            $table->unique(['story_id','chapter_number']);
-            $table->index('story_id');
         });
     }
 
