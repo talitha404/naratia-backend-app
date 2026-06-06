@@ -65,7 +65,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/genres', function () {return DB::table('genres')->get();});
     Route::patch('/stories/{id}/status', [StoryController::class, 'updateStatus']);
     
-    // 📝 FITUR TULIS CERITA (Khusus Penulis yang Login) TALITHA: BINGUNG, REOUTEKU KENAPA DI HAPUS?
+    //📝 FITUR TULIS CERITA (Khusus Penulis yang Login) PUNYA NISA
     // Route::post('/stories', [StoryController::class, 'store']);                  // Bikin draft cerita baru
     // Route::post('/stories/{id}/cover', [StoryController::class, 'uploadCover']); // Upload cover buku
     // Route::post('/stories/{id}/publish', [StoryController::class, 'publish']);   // Publish cerita
