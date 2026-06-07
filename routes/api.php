@@ -16,30 +16,24 @@ use Illuminate\Support\Facades\DB;
 // 🔓 ROUTE PUBLIK (Bisa diakses tanpa harus Login)
 // ==========================================
 
-// test endpoint
 Route::get('/test', function () {
     return response()->json(['message' => 'API OK']);
 });
 
-// users
 Route::apiResource('users', UserController::class);
 
-// auth
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');;
 
-// Fitur Baca Cerita & Beranda (Bebas Akses)
-Route::get('/stories', [StoryController::class, 'published']);               // Ambil semua cerita untuk Beranda
-Route::get('/stories/{id}', [StoryController::class, 'show']);                 // Ambil detail cerita & sinopsis
-Route::get('/genres', function () { return DB::table('genres')->get(); });     // Ambil daftar genre
+// Fitur Baca & Beranda (Public)
+Route::get('/stories', [StoryController::class, 'published']); 
+Route::get('/stories/{id}', [StoryController::class, 'show']); 
+Route::get('/genres', function () { return DB::table('genres')->get(); }); 
 
-// Fitur Baca Bab (Bebas Akses)
-Route::get('/stories/{storyId}/chapters', [ContentController::class, 'getByStory']); // Ambil semua bab
-Route::get('/chapters/{id}', [ContentController::class, 'show']);                    // Lihat detail 1 bab
-
-// Fitur Lihat Komentar (Bebas Akses)
-Route::get('/stories/{storyId}/comments', [CommentController::class, 'getByStory']); // Ambil list komen di bawah novel
-
+// Fitur Baca Bab & Komentar (Public)
+Route::get('/stories/{storyId}/chapters', [ContentController::class, 'getByStory']);
+Route::get('/chapters/{id}', [ContentController::class, 'show']);
+Route::get('/stories/{storyId}/comments', [CommentController::class, 'getByStory']);
 
 // ==========================================
 // 🔐 ROUTE PROTECTED (WAJIB Login / Bawa Token)
@@ -78,11 +72,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/chapters/{id}', [ContentController::class, 'update']);          // Edit teks bab
     Route::delete('/chapters/{id}', [ContentController::class, 'destroy']);      // Hapus bab cerita
 
-    // 💬 FITUR INTERAKSI (Wajib Login)
-    Route::post('/comments', [CommentController::class, 'store']);               // Kirim komen baru
-    Route::post('/likes/toggle', [LikeController::class, 'toggleLike']);         // Tombol Like
+    // 💬 FITUR INTERAKSI
+    Route::post('/comments', [CommentController::class, 'store']);
+    Route::post('/likes/toggle', [LikeController::class, 'toggleLike']);
 
-    // 📚 FITUR PERPUSTAKAAN / BOOKMARK (Wajib Login biar tahu siapa yang simpan)
+    // 📚 FITUR BOOKMARK
     Route::get('/bookmarks', [\App\Http\Controllers\Api\BookmarkController::class, 'index']); 
     Route::post('/bookmarks', [\App\Http\Controllers\Api\BookmarkController::class, 'store']);
 });
