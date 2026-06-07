@@ -6,12 +6,11 @@ Backend ini dibangun menggunakan **Laravel** dan berfungsi sebagai penyedia data
 
 ---
 
-## 🚀 Fitur Utama yang dikembangkan
+## 🚀 Fitur Utama yang Berhasil Dikembangkan
 
 * 🔐 Autentikasi (Register & Login)
 * 👤 Manajemen Profil Pengguna
 * ✍️ CRUD Cerita (Create, Read, Update, Delete)
-* ❤️ Interaksi (Like / Bookmark – opsional)
 
 ---
 
@@ -19,7 +18,7 @@ Backend ini dibangun menggunakan **Laravel** dan berfungsi sebagai penyedia data
 
 * **Laravel** (PHP Framework)
 * **MySQL** (Database)
-* **Laravel Sanctum / JWT** (Authentication)
+* **Laravel Sanctum** (Authentication)
 * **Postman** (API Testing)
 
 ---
@@ -124,7 +123,7 @@ php artisan key:generate
 Buka `.env`, ubah:
 
 ```env
-DB_DATABASE=naratia-backend-app
+DB_DATABASE=naratia-mobile-db
 DB_USERNAME=root
 DB_PASSWORD=
 ```
@@ -163,41 +162,7 @@ http://127.0.0.1:8000
 
 ---
 
-## 🧪 9. Testing di Postman (AMBIL TOKEN)
-
-Langkah:
-
-### 1. Register
-
-```
-POST /api/register
-```
-
-### 2. Login
-
-```
-POST /api/login
-```
-
-📌 Response akan ada:
-
-```
-token
-```
-
----
-
-## 🔐 10. Gunakan Token
-
-Di request lain:
-
-```
-Authorization: Bearer TOKEN_KAMU
-```
-
----
-
-## 📱 11. Integrasi ke Flutter
+## 📱 9. Integrasi ke Flutter
 
 Di Flutter:
 
@@ -207,7 +172,7 @@ Di Flutter:
 http://10.0.2.2:8000/api
 ```
 
-(karena emulator Android)
+(karena emulator Android, sesuaikan dengan emulator yang dimiliki)
 
 ---
 
@@ -223,18 +188,15 @@ http://10.0.2.2:8000/api
 6. Config DB
 7. Migrate
 8. Serve
-9. Postman (ambil token)
-10. Flutter
+9. Flutter
 
 ## 📌 Catatan Pengembangan
 
 * Backend ini dirancang untuk dihubungkan dengan aplikasi **Flutter**
 * Struktur API dibuat sederhana agar mudah dikembangkan
-* Bisa dikembangkan ke fitur:
-
-  * Register (Wajib)
-  * Baca (Wajib)
-  * Simpan (Sangat disarankan)
-  * Suka
-  * Komentar
-
+* Pengembangan yang diharapakan terjadi di masa depan:
+  - Fitur like dan komentar
+  - Fitur bookmark
+  - Fitur pengikut
+  - Fitur publish cerita 
+  - Dan masih banyak lagi
