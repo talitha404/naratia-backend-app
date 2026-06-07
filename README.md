@@ -31,6 +31,8 @@ app
 │   ├── Controllers
 │   │   ├── Api
 │   │   │   ├── AuthController.php
+│   │   │   └── FeedbackController.php
+│   │   │   └── ProfileController.php
 │   │   │   └── UserController.php
 │   │   ├── BookmarkController.php
 │   │   ├── CommentController.php
@@ -43,11 +45,13 @@ app
 │   ├── Bookmark.php
 │   ├── Comment.php
 │   ├── Content.php
+│   ├── Feedback.php
 │   ├── Follow.php
+│   ├── Genre.php
 │   ├── Like.php
 │   ├── Story.php
+│   ├── StoryContent.php
 │   └── User.php
-
 
 routes
 ├── api.php
