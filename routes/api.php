@@ -26,7 +26,7 @@ Route::apiResource('users', UserController::class);
 
 // auth
 Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->name('login');;
 
 // Fitur Baca Cerita & Beranda (Bebas Akses)
 Route::get('/stories', [StoryController::class, 'published']);               // Ambil semua cerita untuk Beranda
@@ -48,9 +48,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // 🚪 AUTH & USER
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
+    Route::get('/user', function (Request $request) {return $request->user();});
     Route::put('/profile', [ProfileController::class, 'update']);
     Route::post('/feedback', [FeedbackController::class, 'store']);
 
