@@ -23,7 +23,7 @@ Route::get('/test', function () {
 Route::apiResource('users', UserController::class);
 
 Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login');;
 
 // Fitur Baca & Beranda (Public)
 Route::get('/stories', [StoryController::class, 'published']); 
@@ -46,19 +46,31 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/profile', [ProfileController::class, 'update']);
     Route::post('/feedback', [FeedbackController::class, 'store']);
 
-    // 📝 FITUR TULIS CERITA (Penulis)
+    // --- 📖 FITUR CERITA / NOVEL NARATIA (Pembaca & Penulis)
+    Route::get('/stories', [StoryController::class, 'published']);    // Ambil semua cerita untuk Beranda (Pembaca)
+    Route::get('/stories/{id}', [StoryController::class, 'show']);    // Ambil detail cerita & sinopsis (Pembaca)
+    Route::get('/genres', function () {return DB::table('genres')->get();});
     Route::patch('/stories/{id}/status', [StoryController::class, 'updateStatus']);
-    Route::post('/stories', [StoryController::class, 'store']);
-    Route::post('/stories/{id}/cover', [StoryController::class, 'uploadCover']);
-    Route::post('/stories/{id}/publish', [StoryController::class, 'publish']);
-    Route::get('/my-stories', [StoryController::class, 'myStories']);
+
+    // --- 📝 FITUR TULIS CERITA (Khusus Penulis yang Login)
+    Route::post('/stories', [StoryController::class, 'store']);                  // Bikin draft cerita baru
+    Route::post('/stories/{id}/cover', [StoryController::class, 'uploadCover']); // Upload cover buku
+    Route::post('/stories/{id}/publish', [StoryController::class, 'publish']);   // Publish cerita
+    Route::get('/my-stories', [StoryController::class, 'myStories']);            // Ambil cerita milik user
     Route::get('/my-drafts', [StoryController::class, 'drafts']);
     Route::get('/my-published', [StoryController::class, 'published']);
     
-    // 📝 FITUR TULIS BAB
-    Route::post('/chapters', [ContentController::class, 'store']);
-    Route::put('/chapters/{id}', [ContentController::class, 'update']);
-    Route::delete('/chapters/{id}', [ContentController::class, 'destroy']);
+    //📝 FITUR TULIS CERITA (Khusus Penulis yang Login) PUNYA SIAPA INI? KURAPIKAN DI ATASNYA YA
+    // Route::post('/stories', [StoryController::class, 'store']);                  // Bikin draft cerita baru
+    // Route::post('/stories/{id}/cover', [StoryController::class, 'uploadCover']); // Upload cover buku
+    // Route::post('/stories/{id}/publish', [StoryController::class, 'publish']);   // Publish cerita
+    // Route::get('/my-stories', [StoryController::class, 'myStories']);            // Ambil cerita milik user
+    // Route::get('/my-drafts', [StoryController::class, 'drafts']);                // Ambil draft milik user
+
+    // 📝 FITUR TULIS BAB (Khusus Penulis yang Login)
+    Route::post('/chapters', [ContentController::class, 'store']);               // Tambah Bab baru
+    Route::put('/chapters/{id}', [ContentController::class, 'update']);          // Edit teks bab
+    Route::delete('/chapters/{id}', [ContentController::class, 'destroy']);      // Hapus bab cerita
 
     // 💬 FITUR INTERAKSI
     Route::post('/comments', [CommentController::class, 'store']);
