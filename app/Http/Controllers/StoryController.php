@@ -127,4 +127,20 @@ class StoryController extends Controller
         return response()->json($story);
     }
     
+    public function updateStatus(Request $request, int $id)
+{
+    $request->validate([
+        'status' => 'required|in:draft,published',
+    ]);
+
+    $story = Story::findOrFail($id);
+    $story->status = $request->status;
+    $story->save();
+
+    return response()->json([
+        'message' => 'Status updated',
+        'data' => $story
+    ]);
+}
+
 }
